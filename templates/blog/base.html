@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>唯月初始</title>
+    <title>{% block title %}{% endblock title %}</title>
       <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
       <script src="{% static 'jquery.min.js' %}"></script>
       <script src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
@@ -37,24 +37,9 @@
     </nav><!-- /.navbar -->
 
     <div class="container">
-
       <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-9">
-            <h1>查询结果</h1>
-        </div>
+        {% block content %}{% endblock %}
       </div><!--/row-->
-
-      <hr>
-
-      <footer>
-          <div class="flex-center">
-            <div>© 唯月初始</div>
-          </div>
-          <div class="flex-center">
-            <div>沪ICP备19000578号-1</div>
-          </div>
-      </footer>
     </div><!--/.container-->
   </body>
 </html>

@@ -1,0 +1,85 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    唯月初始
+{% endblock %}
+
+{% block content %}
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="row">
+            <div class="col-xs-12 col-lg-9">
+              <h1>欢迎光临唯月初始</h1>
+              <h4>这里有大量的智龙迷城初始,以多神为主,也有少神+多石的,需要什么宠物直接按照编号搜索</h4>
+              <h4>最多支持5个宠物组合,第1第2个宠物支持数量搜索,搜不到结果就是没有</h4>
+              <h4>只搜1个宠物结果太多可能会无法加载,请尽量搜2个以上</h4>
+              <h4>有找到合适的编号,去淘宝或者微信联系我,我发box图给你看,最终已box图为准</h4>
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="宠物编号1">
+                <input type="text" class="form-control" placeholder="宠物1数量">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="宠物编号2">
+                <input type="text" class="form-control" placeholder="宠物2数量">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="宠物编号3">
+                <input type="text" class="form-control" placeholder="宠物编号4">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="宠物编号5">
+                <button type="submit" class="btn btn-default">查询</button>
+              </div>
+            </form>
+            </div><!--/.col-xs-12.col-lg-9-->
+            {% for foo in post_list %}
+              <div class="col-xs-12 col-lg-9">
+              <h2>{{ foo.title }}</h2>
+               <p>{{ foo.body }}</p>
+              <p>更新时间:{{ foo.modified_time }}</p>
+              </div><!--/.col-xs-6.col-lg-4-->
+            {% endfor %}
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+          {% if post_list.has_previous %}
+            <li>
+              <a href="?page={{ post_list.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+
+            {% for pg in post_list.paginator.page_range  %}
+                <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+            {% endfor %}
+          {% if post_list.has_next %}
+            <li>
+              <a href="?page={{ post_list.next_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          {% endif %}
+          </ul>
+        </nav>
+          </div><!--/row-->
+        <div id="footer" class="container">
+            <div>© 唯月初始</div>
+            <div>沪ICP备19000578号-1</div>
+        </div>
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <img src="{% static 'wx.jpg' %}" class="img-rounded">
+            <hr>
+            <div class="list-group">
+            <p class="list-group-item active">热门宠物编号:</p>
+            {% for foo in hot_list %}
+                <p class="list-group-item">{{ foo.name }}</p>
+            {% endfor %}
+          </div>
+        </div><!--/.container-->
+{% endblock %}
+
