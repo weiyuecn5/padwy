@@ -4,15 +4,15 @@
     查询结果
 {% endblock %}
 
-{% block content %}
-    <h3>找到{{ shuliang }}条数据</h3>
-        {% for foo in shuju %}
-        <p>账号编号:{{ foo.账号编号 }}</p>
-        <p>石头数量:{{ foo.石头数量 }}</p>
-        <p>账号等级:{{ foo.等级 }}</p>
-        <p>更新时间:{{ foo.更新时间 }}</p>
-        <p>宠物盒子:{{ foo.宠物|linebreaksbr}}</p>
-        <hr>
-        {% endfor %}
 
-{% endblock %}
+{#{% block content %}#}
+{#    <h3>找到{{ shuliang }}条数据</h3>#}
+{#        {% for foo in shuju %}#}
+{#        <p>账号编号:{{ foo.账号编号 }}</p>#}
+{#        <p>石头数量:{{ foo.石头数量 }}</p>#}
+{#        <p>账号等级:{{ foo.等级 }}</p>#}
+{#        <p>更新时间:{{ foo.更新时间 }}</p>#}
+{#        <p>宠物盒子:{{ foo.宠物|linebreaksbr}}</p>#}
+{#        <hr>#}
+{#        {% endfor %}#}
+{#{% endblock %}#}

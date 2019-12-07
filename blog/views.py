@@ -1,9 +1,14 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import Post,Hot,duizhao,shujuku
 
 
 def index(request):
+    if request.method == 'POST':
+        bh_1 =request.POST.get('bh_1')
+        bh_2 = request.POST.get('option1')
+        return HttpResponse(bh_2)
     post_list=Post.objects.all().order_by('-created_time')
     hot_list = Hot.objects.all().order_by('number')
     return render(request, 'blog/index.html', context={
