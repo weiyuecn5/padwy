@@ -8,6 +8,10 @@ def index(request):
     if request.method == 'POST':
         bh_1 =request.POST.get('bh_1')
         bh_2 = request.POST.get('option1')
+        bh_2=request.POST.get('bh_2')
+        bh_3=request.POST.get('bh_3')
+        bh_4=request.POST.get('bh_4')
+        bh_5=request.POST.get('bh_5')
         return HttpResponse(bh_2)
     post_list=Post.objects.all().order_by('-created_time')
     hot_list = Hot.objects.all().order_by('number')
