@@ -7,18 +7,55 @@ from .models import Post,Hot,duizhao,shujuku
 def index(request):
     if request.method == 'POST':
         bh_1 =request.POST.get('bh_1')
-        bh_2 = request.POST.get('option1')
         bh_2=request.POST.get('bh_2')
         bh_3=request.POST.get('bh_3')
         bh_4=request.POST.get('bh_4')
         bh_5=request.POST.get('bh_5')
-        return HttpResponse(bh_2)
-    post_list=Post.objects.all().order_by('-created_time')
-    hot_list = Hot.objects.all().order_by('number')
-    return render(request, 'blog/index.html', context={
-        'post_list':post_list,
-        'hot_list':hot_list
-    })
+        bh_6=request.POST.get('bh_6')
+        cwysl = request.POST.get('cwysl')
+        cwesl = request.POST.get('cwesl')
+        jg = []
+        if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2 and bh_3 and bh_4:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2 and bh_3:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+            for shuju in shujus:
+                if shuju.宠物.count(bh_1)>=int(cwysl):
+                    shuju.宠物=chuli(shuju.宠物)
+                    jg.append(shuju)
+            return render(request, 'blog/jg.html', {'shuju': jg, 'shuliang': len(jg)})
+        else:
+            return render(request, 'blog/index.html')
+    else:
+        post_list=Post.objects.all().order_by('-created_time')
+        hot_list = Hot.objects.all().order_by('number')
+        return render(request, 'blog/index.html', context={
+            'post_list':post_list,
+            'hot_list':hot_list
+        })
 def index2(request):
     if request.method=='GET':
         post_list=Post.objects.all().order_by('-created_time')
