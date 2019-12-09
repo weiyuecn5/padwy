@@ -15,6 +15,7 @@ def index(request):
         cwysl = request.POST.get('cwysl')
         cwesl = request.POST.get('cwesl')
         jg = []
+        context={}
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
@@ -46,7 +47,14 @@ def index(request):
                 if shuju.宠物.count(bh_1)>=int(cwysl):
                     shuju.宠物=chuli(shuju.宠物)
                     jg.append(shuju)
-            return render(request, 'blog/jg.html', {'shuju': jg, 'shuliang': len(jg)})
+            # paginator = Paginator(jg, 10)
+            # page_num = request.GET.get('page', 1)
+            # page_of_jg = paginator.page(page_num)
+            # context['page_of_jg'] = page_of_jg
+            # context['shuliang'] = len(jg)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         else:
             return render(request, 'blog/index.html')
     else:
@@ -56,52 +64,6 @@ def index(request):
             'post_list':post_list,
             'hot_list':hot_list
         })
-def index2(request):
-    if request.method=='GET':
-        post_list=Post.objects.all().order_by('-created_time')
-        hot_list = Hot.objects.all().order_by('number')
-        # print('111')
-        return render(request, 'blog/index.html', context={
-            'post_list':post_list,
-            'hot_list':hot_list
-        })
-    else:
-        bh_1=request.POST.get('bh_1')
-        # bh_2=request.POST.get('bh_2')
-        # bh_3=request.POST.get('bh_3')
-        # bh_4=request.POST.get('bh_4')
-        # bh_5=request.POST.get('bh_5')
-        if request.POST.get('sl_1'):
-            sl_1=request.POST.get('sl_1')
-        else:
-            sl_1=1
-        if request.POST.get('sl_2'):
-            sl_2=request.POST.get('sl_2')
-        else:
-            sl_2=1
-        print(type(bh_1))
-        print(sl_1)
-        print('...')
-        back_data=[]
-        if bh_1:
-            shujus = shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1)
-            for shuju in shujus:
-                if shujuku.宠物.count(bh_1)>=sl_1:
-                    shuju.宠物 = chuli(shuju.宠物)
-                    back_data.append(shuju)
-
-        return render(request, 'blog/jg.html', {'shuju': back_data, 'shuliang': len(back_data)})
-
-
-
-def index1(request):
-    post_list=Post.objects.all().order_by('-created_time')
-    paginator = Paginator(post_list,2) #每页显示2篇
-    page= request.GET.get('page',1)
-    posttomer=paginator.page(page)
-    return render(request,'blog/index1.html',context={
-        'post_list':posttomer,
-    })
 
 def chuli(cw):
     cw_1 = '\n75000宠物:\n'
