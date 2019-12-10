@@ -15,32 +15,52 @@ def index(request):
         cwysl = request.POST.get('cwysl')
         cwesl = request.POST.get('cwesl')
         jg = []
-        context={}
+        context = {}
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
-            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                    shuju.宠物 = chuli(shuju.宠物)
+                    jg.append(shuju)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
-            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                    shuju.宠物 = chuli(shuju.宠物)
+                    jg.append(shuju)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
-            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                    shuju.宠物 = chuli(shuju.宠物)
+                    jg.append(shuju)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         elif bh_1 and bh_2 and bh_3:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
-            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                    shuju.宠物 = chuli(shuju.宠物)
+                    jg.append(shuju)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
-            return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                    shuju.宠物 = chuli(shuju.宠物)
+                    jg.append(shuju)
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/jg.html', context)
         elif bh_1:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
@@ -64,6 +84,60 @@ def index(request):
             'post_list':post_list,
             'hot_list':hot_list
         })
+def cxjg(request):
+    bh_1 = request.POST.get('bh_1')
+    bh_2 = request.POST.get('bh_2')
+    bh_3 = request.POST.get('bh_3')
+    bh_4 = request.POST.get('bh_4')
+    bh_5 = request.POST.get('bh_5')
+    bh_6 = request.POST.get('bh_6')
+    cwysl = request.POST.get('cwysl')
+    cwesl = request.POST.get('cwesl')
+    jg = []
+    context = {}
+    if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(
+            宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+        for shuju in shujus:
+            shuju.宠物 = chuli(shuju.宠物)
+        return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+    elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(
+            宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+        for shuju in shujus:
+            shuju.宠物 = chuli(shuju.宠物)
+        return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+    elif bh_1 and bh_2 and bh_3 and bh_4:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(
+            宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+        for shuju in shujus:
+            shuju.宠物 = chuli(shuju.宠物)
+        return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+    elif bh_1 and bh_2 and bh_3:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(
+            宠物__icontains=bh_3)
+        for shuju in shujus:
+            shuju.宠物 = chuli(shuju.宠物)
+        return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+    elif bh_1 and bh_2:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+        for shuju in shujus:
+            shuju.宠物 = chuli(shuju.宠物)
+        return render(request, 'blog/jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+    elif bh_1:
+        shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+        for shuju in shujus:
+            if shuju.宠物.count(bh_1) >= int(cwysl):
+                shuju.宠物 = chuli(shuju.宠物)
+                jg.append(shuju)
+        paginator = Paginator(jg, 10)
+        page_num = request.GET.get('page', 1)
+        page_of_jg = paginator.page(page_num)
+        context['page_of_jg'] = page_of_jg
+        context['shuliang'] = len(jg)
+        # context['shujus'] = jg
+        # context['shuliang'] = len(jg)
+        return render(request, 'blog/jg.html', context)
 
 def chuli(cw):
     cw_1 = '\n75000宠物:\n'

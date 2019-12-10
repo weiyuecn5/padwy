@@ -7,23 +7,23 @@
 
 {% block content %}
     <h3>找到{{ shuliang }}条数据</h3>
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
+{#      <ul class="pagination">#}
+{#        <li>#}
+{#          <a href="#" aria-label="Previous">#}
+{#            <span aria-hidden="true">&laquo;</span>#}
+{#          </a>#}
+{#        </li>#}
+{#        <li><a href="#">1</a></li>#}
+{#        <li><a href="#">2</a></li>#}
+{#        <li><a href="#">3</a></li>#}
+{#        <li><a href="#">4</a></li>#}
+{#        <li><a href="#">5</a></li>#}
+{#        <li>#}
+{#          <a href="#" aria-label="Next">#}
+{#            <span aria-hidden="true">&raquo;</span>#}
+{#          </a>#}
+{#        </li>#}
+{#      </ul>#}
         {% for shuju in shujus %}
         <p>账号编号:{{ shuju.账号编号 }}</p>
         <p>石头数量:{{ shuju.石头数量 }}</p>
