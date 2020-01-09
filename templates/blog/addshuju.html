@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    加入数据
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>共有 {{ shuliang }} 条数据:</h2>
+        <hr>
+        {% for shuju in shujus %}
+            <a href="http://127.0.0.1:8000/xq/{{ shuju }}/">{{ shuju }}</a><br/>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}
