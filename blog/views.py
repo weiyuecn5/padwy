@@ -78,7 +78,9 @@ def xq(request,zhid):
         shuju.宠物 = chuli(shuju.宠物)
         return render(request,'blog/xq.html',{'shuju':shuju})
     except:
-        return HttpResponse('账号不存在!' )
+        shuju={}
+        shuju['账号编号']='账号不存在!'
+        return render(request, 'blog/xq.html', {'shuju': shuju})
 
 def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
