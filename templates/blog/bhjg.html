@@ -9,7 +9,7 @@
         <h2>共有 {{ shuliang }} 条数据:</h2>
         <hr>
         {% for shuju in shujus %}
-            <a href="http://wwvihs.cn/xq/{{ shuju }}/">{{ shuju }}</a><br/>
+            <a href="{% url 'xq' shuju %}" target="_blank">{{ shuju }}</a><br/>
             <hr>
         {% endfor %}
     </div>
