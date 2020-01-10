@@ -90,10 +90,11 @@ def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/�
         shuju.石头数量 = st
         shuju.等级 = dj
         shuju.更新时间 = gxsj
+        shuju.已卖 = '否'
         shuju.save()
         return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
     except:
-        shuju=shujuku(账号编号=zhid,宠物=cw+',',石头数量 = st,等级 = dj,更新时间 = gxsj)
+        shuju=shujuku(账号编号=zhid,宠物=cw+',',石头数量 = st,等级 = dj,更新时间 = gxsj,已卖='否')
         shuju.save()
         return HttpResponse('加入:%s-%s-%s' % (zhid,st,cw))
 
