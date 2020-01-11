@@ -7,9 +7,10 @@
 {% block content %}
     <div class="container">
         <h2>共有 {{ shuliang }} 条数据:</h2>
+        <h3>账号编号|石头数量</h3>
         <hr>
         {% for shuju in shujus %}
-            <a href="{% url 'xq' shuju %}" target="_blank">{{ shuju }}</a><br/>
+            <a href="{% url 'xq' shuju.bh %}" target="_blank">{{ shuju.bh }} - {{ shuju.st }}</a><br/>
             <hr>
         {% endfor %}
     </div>

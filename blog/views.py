@@ -59,7 +59,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl):
-                    jg.append(shuju.账号编号)
+                    jg.append({"bh":shuju.账号编号,"st":shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
@@ -97,7 +97,14 @@ def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/�
         shuju=shujuku(账号编号=zhid,宠物=cw+',',石头数量 = st,等级 = dj,更新时间 = gxsj,已卖='否')
         shuju.save()
         return HttpResponse('加入:%s-%s-%s' % (zhid,st,cw))
-
+def delshuju(request,zhid):
+    try:
+        shuju=shujuku.objects.get(pk=zhid)
+        shuju.已卖='是'
+        shuju.save()
+        return HttpResponse('编号:%s 已经删除!'%zhid)
+    except:
+        return HttpResponse('编号:%s 不存在!'%zhid)
 def chuli(cw):
     cw_1 = '\n75000宠物:\n'
     cw_2 = '50000宠物:\n'
