@@ -67,7 +67,7 @@
             {% for foo in post_list %}
               <div class="col-xs-12 col-lg-9">
               <h2>{{ foo.title }}</h2>
-              <p>{{ foo.body }}</p>
+              <p>{{ foo.body|linebreaksbr}}</p>
               <p>更新时间:{{ foo.modified_time }}</p>
                   <hr>
               </div><!--/.col-xs-6.col-lg-4-->
