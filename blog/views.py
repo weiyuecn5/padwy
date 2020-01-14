@@ -81,7 +81,9 @@ def xq(request,zhid):
         shuju={}
         shuju['账号编号']='账号不存在!'
         return render(request, 'blog/xq.html', {'shuju': shuju})
-
+def ks(request,zhid):
+    shuju = shujuku.objects.get(账号编号=zhid)
+    return HttpResponse(shuju.宠物)
 def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
     try:
