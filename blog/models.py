@@ -18,7 +18,7 @@ class Hot(models.Model):
 
 class shujuku(models.Model):
     账号编号=models.CharField(max_length=100,primary_key=True)
-    石头数量=models.IntegerField (blank=True,default=0)
+    石头数量=models.IntegerField (blank=True,default=0) #修改数据类型
     等级=models.CharField(max_length=100,blank=True)
     更新时间=models.CharField(max_length=100,blank=True)
     宠物=models.TextField()

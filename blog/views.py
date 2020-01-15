@@ -228,7 +228,7 @@ def wy(request):
             if int(zxst)<=200:
                 return HttpResponse('没意义不显示!')
             else:
-                shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
+                shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))#修改数据类型后方法
                 for shuju in shujus:
                     backdata = {
                         'bh': shuju.账号编号,
