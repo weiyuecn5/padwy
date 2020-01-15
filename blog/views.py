@@ -180,9 +180,9 @@ def wy(request):
             else:
                 return render(request, 'blog/jg.html', context)
         elif zxst and bh_1:
-            shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(石头数量__gte=int(zxst))
             for shuju in shujus:
-                if int(shuju.石头数量)>=int(zxst) and shuju.宠物.count(bh_1) >= int(cwysl):
+                if shuju.宠物.count(bh_1) >= int(cwysl):
                     backdata = {
                         'bh': shuju.账号编号,
                         'st': shuju.石头数量,
@@ -200,7 +200,7 @@ def wy(request):
         elif bh_1:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                if shuju.宠物.count(bh_1) >= int(cwysl):
                     backdata = {
                         'bh': shuju.账号编号,
                         'st': shuju.石头数量,
@@ -228,17 +228,16 @@ def wy(request):
             if int(zxst)<=200:
                 return HttpResponse('没意义不显示!')
             else:
-                shujus = shujuku.objects.all()
+                shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
                 for shuju in shujus:
-                    if int(shuju.石头数量)>=int(zxst):
-                        backdata = {
-                            'bh': shuju.账号编号,
-                            'st': shuju.石头数量,
-                            'dj': shuju.等级,
-                            'gxsj': shuju.更新时间,
-                            'cw': chuli(shuju.宠物)
-                        }
-                        jg.append(backdata)
+                    backdata = {
+                        'bh': shuju.账号编号,
+                        'st': shuju.石头数量,
+                        'dj': shuju.等级,
+                        'gxsj': shuju.更新时间,
+                        'cw': chuli(shuju.宠物)
+                    }
+                    jg.append(backdata)
                 context['shujus'] = jg
                 context['shuliang'] = len(jg)
                 if xslx == '1':
@@ -272,7 +271,7 @@ def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/�
     try:
         shuju = shujuku.objects.get(账号编号=zhid)
         shuju.宠物 = shuju.宠物 + cw+','
-        shuju.石头数量 = st
+        shuju.石头数量 = int(st)
         shuju.等级 = dj
         shuju.更新时间 = gxsj
         shuju.已卖 = '否'
