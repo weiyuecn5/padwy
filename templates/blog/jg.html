@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    唯月初始|查询结果
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>共有 {{ shuliang }} 条数据:</h2>
+        <hr>
+        {% for shuju in shujus %}
+            <h3>账号编号:{{ shuju.bh }}</h3>
+            <p>石头数量:{{ shuju.st }}</p>
+            <p>账号等级:{{ shuju.dj }}</p>
+            <p>更新时间:{{ shuju.gxsj }}</p>
+            <p>账号编号:{{ shuju.cw|linebreaksbr }}</p>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}

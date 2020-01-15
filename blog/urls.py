@@ -7,5 +7,6 @@ urlpatterns = [
     path('add/<zhid>/<st>/<dj>/<cw>/',views.add,name='add'),
     path('xq/<zhid>/',views.xq,name='xq'),
     path('ks/<zhid>/',views.ks,name='ks'),
+    path('wy/',views.wy,name='wy'),
     path('delshuju/<zhid>/', views.delshuju, name='delshuju')
 ]
