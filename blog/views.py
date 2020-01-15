@@ -179,10 +179,10 @@ def wy(request):
                 return render(request, 'blog/bhjg.html', context)
             else:
                 return render(request, 'blog/jg.html', context)
-        elif bh_1:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+        elif zxst and bh_1:
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
+                if shuju.石头数量>=int(zxst) and shuju.宠物.count(bh_1) >= int(cwysl):
                     backdata = {
                         'bh': shuju.账号编号,
                         'st': shuju.石头数量,
@@ -197,10 +197,10 @@ def wy(request):
                 return render(request, 'blog/bhjg.html', context)
             else:
                 return render(request, 'blog/jg.html', context)
-        elif zxst and bh_1:
-            shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+        elif bh_1:
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                if shuju.石头数量>=int(zxst) and shuju.宠物.count(bh_1) >= int(cwysl):
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
                     backdata = {
                         'bh': shuju.账号编号,
                         'st': shuju.石头数量,
