@@ -13,7 +13,6 @@ def index(request):
         bh_6=request.POST.get('bh_6')
         cwysl = request.POST.get('cwysl')
         cwesl = request.POST.get('cwesl')
-        xslx=request.POST.get('xslx')
         jg = []
         context = {}
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
@@ -51,7 +50,7 @@ def index(request):
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                if shuju.宠物.count(bh_1) >= int(cwysl):
+                if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
@@ -86,7 +85,6 @@ def wy(request):
         xslx=request.POST.get('xslx') #显示类型
         cxbh=request.POST.get('cxbh')#查询编号
         zxst=request.POST.get('zxst')#最小石头
-        cwst = request.POST.get('cwst')#宠物石头 1.单查石头,2.石头+宠物1
         jg = []
         context = {}
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
@@ -173,6 +171,7 @@ def wy(request):
                         'cw':chuli(shuju.宠物)
                     }
                     jg.append(backdata)
+            print(cwesl)
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             if xslx=='1':
