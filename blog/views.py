@@ -225,7 +225,7 @@ def wy(request):
                 shuju['账号编号'] = '账号不存在!'
                 return render(request, 'blog/xq.html', {'shuju': shuju})
         elif zxst:
-            if int(zxst)<=200:
+            if int(zxst)<=300:
                 return HttpResponse('没意义不显示!')
             else:
                 shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))#修改数据类型后方法
@@ -315,5 +315,5 @@ def chuli(cw):
                 else:
                     cw_5 = cw_5+ '[' + a.宠物编号 + a.宠物名字 + '] '
             except:
-                pass
+                cw_5 = cw_5 + '[' + data + '] '
     return cw_1+'\n'+cw_2+'\n'+cw_6+'\n'+cw_4+'\n'+cw_3+'\n'+cw_5
