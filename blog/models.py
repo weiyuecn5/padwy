@@ -1,12 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 import django.utils.timezone as timezone
-from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     # 文章标题
     title = models.CharField(max_length=70)
-    body = RichTextField()
+    body = models.TextField()
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     created_time = models.DateTimeField(default = timezone.now)
     modified_time = models.DateTimeField(auto_now = True)
