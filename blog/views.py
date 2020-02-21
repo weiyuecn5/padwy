@@ -311,6 +311,8 @@ def chuli(cw):
                     cw_4 = cw_4 + '[' + a.宠物编号 + a.宠物名字 + '] '
                 elif int(a.宠物价值)==6000:
                     cw_3 = cw_3 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                elif 0<int(a.宠物价值) < 1000:
+                    pass
                 else:
                     cw_5 = cw_5+ '[' + a.宠物编号 + a.宠物名字 + '] '
             except:
