@@ -24,6 +24,7 @@ class shujuku(models.Model):
     已卖=models.CharField(max_length=20,default='否')
     买家=models.CharField(max_length=100,blank=True)
     价格=models.CharField(max_length=100,blank=True)
+    账号ID = models.CharField(max_length=100, blank=True)
 
 class duizhao(models.Model):
     宠物编号=models.CharField(max_length=100,primary_key=True)

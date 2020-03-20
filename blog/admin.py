@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Post, Hot,shujuku,duizhao
 
 class ShujukuAdmin(admin.ModelAdmin):
-    list_display = ('账号编号','石头数量','更新时间','已卖')
+    list_display = ('账号编号','石头数量','更新时间','已卖','账号ID')
     ordering = ('-更新时间',)
 class DuizhaoAdmin(admin.ModelAdmin):
     list_display = ('宠物编号','宠物名字','宠物价值','加入时间')
