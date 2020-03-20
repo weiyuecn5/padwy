@@ -265,6 +265,14 @@ def xq(request,zhid):
 def ks(request,zhid):
     shuju = shujuku.objects.get(账号编号=zhid)
     return HttpResponse(shuju.宠物)
+def addid(request,zhid,yxid):
+    try:
+        shuju = shujuku.objects.get(账号编号=zhid)
+        shuju.账号ID = yxid
+        shuju.save()
+        return HttpResponse('更新:%s-%s' % (zhid, yxid))
+    except:
+        pass
 def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
     try:
