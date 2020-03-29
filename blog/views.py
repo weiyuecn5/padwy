@@ -16,7 +16,7 @@ def index(request):
         jg = []
         context = {}
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5 and bh_6:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).filter(宠物__icontains=bh_6)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).filter(宠物__icontains=bh_6).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
@@ -24,7 +24,7 @@ def index(request):
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
@@ -32,7 +32,7 @@ def index(request):
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
@@ -40,7 +40,7 @@ def index(request):
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
@@ -48,7 +48,7 @@ def index(request):
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
@@ -56,7 +56,7 @@ def index(request):
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
         elif bh_1:
-            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
+            shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).exclude(账号编号__icontains='W')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl):
                     jg.append({"bh":shuju.账号编号,"st":shuju.石头数量})
