@@ -9,5 +9,6 @@ urlpatterns = [
     path('xq/<zhid>/',views.xq,name='xq'),
     path('ks/<zhid>/',views.ks,name='ks'),
     path('wy/',views.wy,name='wy'),
+    path('jl/',views.jl,name='jl'),
     path('delshuju/<zhid>/', views.delshuju, name='delshuju')
 ]

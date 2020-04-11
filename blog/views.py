@@ -265,6 +265,8 @@ def xq(request,zhid):
 def ks(request,zhid):
     shuju = shujuku.objects.get(账号编号=zhid)
     return HttpResponse(shuju.宠物)
+def jl(request):
+    return render(request, 'blog/jl.html')
 def addid(request,zhid,yxid):
     try:
         shuju = shujuku.objects.get(账号编号=zhid)
