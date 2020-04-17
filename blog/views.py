@@ -87,7 +87,6 @@ def ww(request):
         zxst=request.POST.get('zxst')#最小石头
         jg = []
         context = {}
-        print(xslx)
         if cxbh and xslx=='1':
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
