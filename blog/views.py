@@ -22,6 +22,7 @@ def index(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4 + '|' + bh_5 + '|' + bh_6
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
@@ -30,6 +31,7 @@ def index(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4 + '|' + bh_5
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
@@ -38,6 +40,7 @@ def index(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
@@ -46,6 +49,7 @@ def index(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
@@ -54,6 +58,7 @@ def index(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl
             return render(request, 'blog/bhjg.html', context)
         elif bh_1:
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
@@ -62,6 +67,7 @@ def index(request):
                     jg.append({"bh":shuju.账号编号,"st":shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl
             return render(request, 'blog/bhjg.html', context)
         else:
             return render(request, 'blog/index.html')
@@ -87,8 +93,16 @@ def ww(request):
         zxst=request.POST.get('zxst')#最小石头
         jg = []
         context = {}
-
-        if cxbh and xslx=='1':
+        if cxbh and bh_6:
+            try:
+                shuju = shujuku.objects.get(账号编号=cxbh)
+                str=shuju.宠物
+                shuju.宠物=str.replace(bh_6+',', ',',1)
+                shuju.save()
+                return HttpResponse('账号:%s-%s_删除成功!' % (cxbh, bh_6))
+            except:
+                return HttpResponse('账号:%s-%s_删除失败!' % (cxbh, bh_6))
+        elif cxbh and xslx=='1':
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
                 shuju.宠物 = chuli(shuju.宠物)
@@ -111,6 +125,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4 + '|' + bh_5 + '|' + bh_6
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
@@ -119,6 +134,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4 + '|' + bh_5
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
@@ -127,6 +143,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and bh_3:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
@@ -135,6 +152,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and  zxst:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(石头数量__gte=int(zxst))
@@ -143,6 +161,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|最小石头:' + zxst
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
@@ -151,6 +170,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and  zxst:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(石头数量__gte=int(zxst))
@@ -159,6 +179,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl + '|最小石头:' + zxst
             return render(request, 'blog/bhjg.html', context)
         elif bh_1:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
@@ -167,6 +188,7 @@ def ww(request):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
+            context['ss'] = bh_1 + 'x' + cwysl
             return render(request, 'blog/bhjg.html', context)
         elif zxst:
             shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
