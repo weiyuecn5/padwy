@@ -6,8 +6,9 @@
 
 {% block content %}
     <div class="container">
-        <h2>搜索编号: {{ ss }} </h2>
-        <h2>共有 {{ shuliang }} 条数据:</h2>
+        <h3>搜索编号:</h3>
+        <h4>{{ ss }}</h4>
+        <h3>共有 {{ shuliang }} 条数据:</h3>
         <h4>编号|石头</h4>
         <hr>
         {% for shuju in shujus %}
