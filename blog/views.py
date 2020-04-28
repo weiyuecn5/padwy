@@ -402,6 +402,12 @@ def xq(request,zhid):
 def ks(request,zhid):
     shuju = shujuku.objects.get(账号编号=zhid)
     return HttpResponse(shuju.宠物)
+def zhqd(request):
+    data=''
+    shujus = shujuku.objects.filter(已卖__exact='否')
+    for shuju in shujus:
+        data=data+shuju.账号编号+'\n'
+    return HttpResponse(data)
 def jl(request):
     return render(request, 'blog/jl.html')
 def addid(request,zhid,yxid):
