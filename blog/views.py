@@ -102,7 +102,7 @@ def ww(request):
                 return HttpResponse('账号:%s-%s_删除成功!' % (cxbh, bh_1))
             except:
                 return HttpResponse('账号:%s-%s_删除失败!' % (cxbh, bh_1))
-        elif zxst and cxbh:
+        elif zxst and cxbh:#加入最大石头限制 cxbh代替最大石头
             shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
