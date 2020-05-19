@@ -89,19 +89,35 @@ def ww(request):
         cwysl = request.POST.get('cwysl')
         cwesl = request.POST.get('cwesl')
         xslx=request.POST.get('xslx') #显示类型
-        cxbh=request.POST.get('cxbh')#查询编号
+        cxbh=request.POST.get('cxbh')#查询编号,最大石头
         zxst=request.POST.get('zxst')#最小石头
         jg = []
         context = {}
-        if cxbh and bh_6:
+        if cxbh and bh_1:
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
                 str=shuju.宠物
-                shuju.宠物=str.replace(bh_6+',', ',',1)
+                shuju.宠物=str.replace(bh_1+',', ',',1)
                 shuju.save()
-                return HttpResponse('账号:%s-%s_删除成功!' % (cxbh, bh_6))
+                return HttpResponse('账号:%s-%s_删除成功!' % (cxbh, bh_1))
             except:
-                return HttpResponse('账号:%s-%s_删除失败!' % (cxbh, bh_6))
+                return HttpResponse('账号:%s-%s_删除失败!' % (cxbh, bh_1))
+        elif zxst and cxbh:
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh))
+            for shuju in shujus:
+                if shuju.宠物.count(bh_1) >= int(cwysl):
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/bhjg.html', context)
+        elif zxst:
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
+            for shuju in shujus:
+                if shuju.宠物.count(bh_1) >= int(cwysl):
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/bhjg.html', context)
         elif cxbh and xslx=='1':
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
@@ -190,14 +206,7 @@ def ww(request):
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl
             return render(request, 'blog/bhjg.html', context)
-        elif zxst:
-            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
-            for shuju in shujus:
-                if shuju.宠物.count(bh_1) >= int(cwysl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
-            context['shujus'] = jg
-            context['shuliang'] = len(jg)
-            return render(request, 'blog/bhjg.html', context)
+
         else:
             return render(request, 'blog/index.html')
 
