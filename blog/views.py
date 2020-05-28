@@ -411,6 +411,17 @@ def xq(request,zhid):
 def ks(request,zhid):
     shuju = shujuku.objects.get(账号编号=zhid)
     return HttpResponse(shuju.宠物)
+def sc(request,zhid,scid):#删除宠物 账号ID 删除id
+    try:
+        shuju = shujuku.objects.get(账号编号=zhid)
+        str = shuju.宠物
+        shuju.宠物 = str.replace(scid + ',', ',', 1)
+        shuju.save()
+        return HttpResponse('账号:%s-%s_删除成功!' % (zhid, scid))
+    except:
+        return HttpResponse('账号:%s-%s_删除失败!' % (zhid, scid))
+
+
 def zhqd(request):
     data=''
     shujus = shujuku.objects.filter(已卖__exact='否')
