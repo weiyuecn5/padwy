@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post,Hot,duizhao,shujuku
 import time
+import requests
+from bs4 import BeautifulSoup
+from time import sleep
 
 def index(request):
     if request.method == 'POST':
@@ -420,6 +423,22 @@ def sc(request,zhid,scid):#删除宠物 账号ID 删除id
         return HttpResponse('账号:%s-%s_删除成功!' % (zhid, scid))
     except:
         return HttpResponse('账号:%s-%s_删除失败!' % (zhid, scid))
+def ptj(request):
+    get_txt('6221')
+    return HttpResponse('加入:')
+def get_txt(number):
+    full_url = 'http://pad.skyozora.com/pets/'+number
+    # print(full_url)
+    try:
+        r = requests.get(full_url)
+        soup = BeautifulSoup(r.text,features="html.parser")
+        b= soup.title.text.split('-')
+        bb=soup.find('span',class_='yellow bold')
+        # print(bb)
+        shuju=duizhao(宠物编号=b[0].strip(),宠物名字=b[1].strip(),宠物价值=bb.text)
+        shuju.save()
+    except:
+        pass
 
 
 def zhqd(request):
