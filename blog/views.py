@@ -423,8 +423,13 @@ def sc(request,zhid,scid):#删除宠物 账号ID 删除id
         return HttpResponse('账号:%s-%s_删除成功!' % (zhid, scid))
     except:
         return HttpResponse('账号:%s-%s_删除失败!' % (zhid, scid))
-def ptj(request):
-    get_txt('6221')
+def ptj(request,bh1,bh2):
+    for i in range(int(bh1), int(bh2)+1):
+        if duizhao.objects.filter(宠物编号=str(i)).exists():
+            print("该数据已经存在")
+        else:
+            get_txt(str(i))
+            sleep(2)
     return HttpResponse('加入:')
 def get_txt(number):
     full_url = 'http://pad.skyozora.com/pets/'+number
