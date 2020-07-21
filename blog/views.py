@@ -121,16 +121,7 @@ def ww(request):
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
-        elif cxbh and xslx=='1':
-            try:
-                shuju = shujuku.objects.get(账号编号=cxbh)
-                shuju.宠物 = chuli(shuju.宠物)
-                return render(request, 'blog/xq.html', {'shuju': shuju})
-            except:
-                shuju = {}
-                shuju['账号编号'] = '账号不存在!'
-                return render(request, 'blog/xq.html', {'shuju': shuju})
-        elif cxbh and xslx == '3':
+        elif cxbh and xslx == '1':
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
                 back = chuli_1(shuju.宠物)
