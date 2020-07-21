@@ -130,6 +130,15 @@ def ww(request):
                 shuju = {}
                 shuju['账号编号'] = '账号不存在!'
                 return render(request, 'blog/xq.html', {'shuju': shuju})
+        elif cxbh and xslx == '3':
+            try:
+                shuju = shujuku.objects.get(账号编号=cxbh)
+                back = chuli_1(shuju.宠物)
+                return render(request, 'blog/tpxq.html', {'shuju': shuju,'back':back})
+            except:
+                shuju = {}
+                shuju['账号编号'] = '账号不存在!'
+                return render(request, 'blog/tpxq.html', {'shuju': shuju})
         elif cxbh and xslx=='2':
             shujus = shujuku.objects.filter(已卖__exact='否').filter(账号编号__icontains=cxbh)
             for shuju in shujus:
@@ -515,3 +524,34 @@ def chuli(cw):
             except:
                 cw_5 = cw_5 + '[' + data + '] '
     return cw_1+'\n'+cw_2+'\n'+cw_6+'\n'+cw_4+'\n'+cw_3+'\n'+cw_5
+
+def chuli_1(cw):
+    cw_1 = []
+    cw_2 = []
+    cw_3 = []
+    cw_4 = []
+    cw_6 = []
+    cw_5 = []
+    for data in cw.split(','):
+        if len(data) > 4 or len(data) < 3:
+            continue
+        else:
+            try:
+                a = duizhao.objects.get(pk=data)
+                if int(a.宠物价值)==75000:
+                    cw_1.append(a.宠物编号)
+                elif int(a.宠物价值)==50000:
+                    cw_2.append(a.宠物编号)
+                elif int(a.宠物价值) == 25000:
+                    cw_6.append(a.宠物编号)
+                elif int(a.宠物价值) == 15000:
+                    cw_4.append(a.宠物编号)
+                elif int(a.宠物价值)==6000:
+                    cw_3.append(a.宠物编号)
+                elif 0<int(a.宠物价值) < 1000:
+                    pass
+                else:
+                    cw_5.append(a.宠物编号)
+            except:
+                pass
+    return cw_1,cw_2,cw_6,cw_4,cw_3,cw_5
