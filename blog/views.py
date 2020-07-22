@@ -405,8 +405,10 @@ def wy(request):
 def xq(request,zhid):
     try:
         shuju = shujuku.objects.get(账号编号=zhid)
-        shuju.宠物 = chuli(shuju.宠物)
-        return render(request,'blog/xq.html',{'shuju':shuju})
+        back = chuli_1(shuju.宠物)
+        return render(request, 'blog/tpxq.html', {'shuju': shuju, 'back': back})
+        # shuju.宠物 = chuli(shuju.宠物)
+        # return render(request,'blog/xq.html',{'shuju':shuju})
     except:
         shuju={}
         shuju['账号编号']='账号不存在!'
