@@ -112,7 +112,10 @@
             <div class="list-group">
             <p class="list-group-item active">热门宠物编号:</p>
             {% for foo in hot_list %}
-                <p class="list-group-item">{{ foo.name }}</p>
+                <li>
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo.name }}.png" width="40" height="40">
+                    <span><strong>编号:{{ foo.name }}</strong></span>
+                </li>
             {% endfor %}
           </div>
         </div><!--/.container-->
