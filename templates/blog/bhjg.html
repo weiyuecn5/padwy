@@ -12,7 +12,8 @@
         <h4>编号|石头</h4>
         <hr>
         {% for shuju in shujus %}
-            <a href="{% url 'xq' shuju.bh %}" target="_blank">{{ shuju.bh }} - {{ shuju.st }}</a><br/>
+            <img src="https://pad.skyozora.com/images/drops/{{ shuju.sx }}.png" width="30" height="30">
+            <a href="{% url 'xq' shuju.bh %}" target="_blank"><strong>{{ shuju.bh }} - {{ shuju.st }}<strong></a><br/>
             <hr>
         {% endfor %}
     </div>

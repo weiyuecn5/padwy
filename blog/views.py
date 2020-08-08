@@ -22,7 +22,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).filter(宠物__icontains=bh_6).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4 + '|' + bh_5 + '|' + bh_6
@@ -31,7 +31,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4 + '|' + bh_5
@@ -40,7 +40,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3 + '|' + bh_4
@@ -49,7 +49,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|'+ bh_3
@@ -58,7 +58,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2)>=int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl
@@ -67,7 +67,7 @@ def index(request):
             shujus=shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).exclude(账号编号__icontains='W').exclude(账号编号__icontains='X')
             for shuju in shujus:
                 if shuju.宠物.count(bh_1)>=int(cwysl):
-                    jg.append({"bh":shuju.账号编号,"st":shuju.石头数量})
+                    jg.append({"bh":shuju.账号编号,"st":shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl
@@ -109,7 +109,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
@@ -117,7 +117,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
@@ -133,7 +133,7 @@ def ww(request):
         elif cxbh and xslx=='2':
             shujus = shujuku.objects.filter(已卖__exact='否').filter(账号编号__icontains=cxbh)
             for shuju in shujus:
-                jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
@@ -141,7 +141,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5).filter(宠物__icontains=bh_6)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4 + '|' + bh_5 + '|' + bh_6
@@ -150,7 +150,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4 + '|' + bh_5
@@ -159,7 +159,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3 + '|' + bh_4
@@ -168,7 +168,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|' + bh_3
@@ -177,7 +177,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(石头数量__gte=int(zxst))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl + '|最小石头:' + zxst
@@ -186,7 +186,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl) and shuju.宠物.count(bh_2) >= int(cwesl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl
@@ -195,7 +195,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(石头数量__gte=int(zxst))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|最小石头:' + zxst
@@ -204,7 +204,7 @@ def ww(request):
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
-                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量})
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl
