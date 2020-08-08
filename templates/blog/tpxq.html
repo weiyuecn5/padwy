@@ -7,8 +7,8 @@
 {% block content %}
     <div class="jumbotron">
         <div class="container">
-            <p class="hljs-strong"><img src="https://pad.skyozora.com/images/drops/{{ shuju.买家 }}.png" width="30" height="30"><strong>编号:{{ shuju.账号编号 }}
-                <strong>﹎魔法石:{{ shuju.石头数量 }}﹎等级:{{ shuju.等级 }}<strong></p>
+            <p class="hljs-strong"><img src="https://pad.skyozora.com/images/drops/{{ shuju.买家 }}.png" width="25" height="25"><strong>编号:{{ shuju.账号编号 }}
+                <strong>__魔法石:{{ shuju.石头数量 }}__等级:{{ shuju.等级 }}<strong></p>
             {% for foo in back.0 %}
                 <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
             {% endfor %}
