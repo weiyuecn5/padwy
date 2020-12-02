@@ -130,8 +130,7 @@ def get_qd():#获取清单
 # copyshuju()
 # copyduizhao()
 get_buy()
-<<<<<<< HEAD
+
 # get_pad()
-=======
 # get_pad()
->>>>>>> aec4e9307ad4caece324de86baee55c1dbe17b63
+
