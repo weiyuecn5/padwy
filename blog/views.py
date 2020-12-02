@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post,Hot,duizhao,shujuku
+from .models import Post,Hot,duizhao,shujuku,danzhu
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -503,6 +503,21 @@ def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/�
         return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
     except:
         shuju=shujuku(账号编号=zhid,宠物=cw+',',石头数量 = st[-4:],等级 = dj,更新时间 = gxsj,已卖='否')
+        shuju.save()
+        return HttpResponse('加入:%s-%s-%s' % (zhid,st,cw))
+def dzadd(request,zhid,st='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
+    gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
+    try:
+        shuju = danzhu.objects.get(账号编号=zhid)
+        shuju.宠物 = shuju.宠物 + cw+','
+        shuju.石头数量 = int(st[-4:])
+        shuju.等级 = '2'
+        shuju.更新时间 = gxsj
+        shuju.已卖 = '否'
+        shuju.save()
+        return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
+    except:
+        shuju=danzhu(账号编号=zhid,宠物=cw+',',石头数量 = st[-4:],等级 = '2',更新时间 = gxsj,已卖='否')
         shuju.save()
         return HttpResponse('加入:%s-%s-%s' % (zhid,st,cw))
 def delshuju(request,zhid):
