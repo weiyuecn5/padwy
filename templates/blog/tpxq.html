@@ -7,39 +7,76 @@
 {% block content %}
     <div class="jumbotron">
         <div class="container">
+
             <p class="hljs-strong"><img src="https://pad.skyozora.com/images/drops/{{ shuju.买家 }}.png" width="25" height="25"><strong>编号:{{ shuju.账号编号 }}
-                <strong>☆魔法石:{{ shuju.石头数量 }}☆等级:{{ shuju.等级 }}☆已卖:{{ shuju.已卖 }}<strong></p>
+                <strong>☆魔法石:{{ shuju.石头数量 }}☆等级:{{ shuju.等级 }}</p>
             {% for foo in back.0 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
+{#                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">#}
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
             {% endfor %}
-            <br>
-            <br>
+            <div style="clear:both">
+            </div>
             {% for foo in back.1 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
             {% endfor %}
-            <br>
-            <br>
-            {% for foo in back.4 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
-            {% endfor %}
-            <br>
-            <br>
+            <div style="clear:both">
+            </div>
             {% for foo in back.2 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
             {% endfor %}
-            <br>
-            <br>
+            <div style="clear:both">
+            </div>
             {% for foo in back.3 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
             {% endfor %}
-            <br>
-            <br>
+            <div style="clear:both">
+            </div>
+            {% for foo in back.4 %}
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
+            {% endfor %}
+            <div style="clear:both">
+            </div>
             {% for foo in back.5 %}
-                <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40">
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
             {% endfor %}
-            <br>
-            <br>
-        <p>{{ shuju.更新时间 }}</p>
+            <div style="clear:both">
+            </div>
+            {% for foo in back.6 %}
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
+            {% endfor %}
+            <div style="clear:both">
+            </div>
+            {% for foo in back.7 %}
+                <div style="position: relative; width: 41px; height: 41px;float:left">
+                    <img src="https://pad.skyozora.com/images/pets/{{ foo }}.png" width="40" height="40" alt="">
+                    <span  style="position: absolute; top: 27px; left: 0;color: #ffffff;font-size:4px">{{ foo }}</span>
+                </div>
+            {% endfor %}
+            <div style="clear:both">
+                        <p><strong>☆更新时间:{{ shuju.更新时间 }}<strong>☆已卖:{{ shuju.已卖 }}<strong></p>
+            </div>
+
         </div>
     </div>
 

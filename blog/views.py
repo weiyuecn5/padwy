@@ -566,6 +566,7 @@ def chuli_1(cw):
     cw_4 = []
     cw_6 = []
     cw_5 = []
+    cw_7 = []
     for data in cw.split(','):
         if len(data) > 4 or len(data) < 3:
             continue
@@ -577,15 +578,17 @@ def chuli_1(cw):
                 elif int(a.宠物价值)==50000:
                     cw_2.append(a.宠物编号)
                 elif int(a.宠物价值) == 25000:
-                    cw_6.append(a.宠物编号)
+                    cw_3.append(a.宠物编号)
                 elif int(a.宠物价值) == 15000:
                     cw_4.append(a.宠物编号)
+                elif int(a.宠物价值) == 10000:
+                    cw_5.append(a.宠物编号)
                 elif int(a.宠物价值)==6000:
-                    cw_3.append(a.宠物编号)
+                    cw_6.append(a.宠物编号)
                 elif 0<int(a.宠物价值) < 1000:
                     pass
                 else:
-                    cw_5.append(a.宠物编号)
+                    cw_7.append(a.宠物编号)
             except:
                 pass
-    return cw_1,cw_2,cw_6,cw_4,cw_3,cw_5
+    return cw_1,cw_2,cw_3,cw_4,cw_5,cw_6,cw_7
