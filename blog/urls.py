@@ -17,4 +17,6 @@ urlpatterns = [
     path('zhqd/',views.zhqd,name='zhqd'),
     path('delshuju/<zhid>/', views.delshuju, name='delshuju'),
     path('addsx/<zhid>/<sx>/',views.addsx,name='addsx'),
+    path('addjk/<zhid>/<sx>/', views.addjk, name='addjk'),
+    path('jk/', views.jk, name='jk'),
 ]

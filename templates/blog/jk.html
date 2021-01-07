@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %}
+    唯月初始
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+      <caption>边框表格布局</caption>
+      <thead>
+        <tr>
+          <th width="10%">编号</th>
+          <th>实时监控</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for foo in shuju %}
+            <tr>
+              <td><strong>{{ foo.手机编号 }}<strong></td>
+              <td>{{ foo.内容|linebreaksbr}}</td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

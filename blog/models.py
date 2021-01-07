@@ -42,3 +42,7 @@ class danzhu(models.Model):
     买家=models.CharField(max_length=100,blank=True)
     价格=models.CharField(max_length=100,blank=True)
     账号ID = models.CharField(max_length=100, blank=True)
+
+class jiankong(models.Model):
+    手机编号=models.CharField(max_length=100,primary_key=True)
+    内容 = models.TextField()

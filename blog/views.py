@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post,Hot,duizhao,shujuku,danzhu
+from .models import Post,Hot,duizhao,shujuku,danzhu,jiankong
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -489,7 +489,21 @@ def addsx(request,zhid,sx):
         return HttpResponse('更新:%s-%s' % (zhid, sx))
     except:
         pass
+def addjk(request,zhid,sx):
+    try:
+        shuju = jiankong.objects.get(手机编号=zhid)
+        内容=shuju.内容
+        if len(内容)>100:
+            内容=''
+        shuju.内容 = sx+'\n'+内容
+        shuju.save()
+        return HttpResponse('更新:%s-%s' % (zhid, sx))
+    except:
+        pass
 
+def jk(request):
+    shuju=jiankong.objects.all()
+    return render(request, 'blog/jk.html',{'shuju':shuju})
 def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
     try:
