@@ -493,7 +493,7 @@ def addjk(request,zhid,sx):
     try:
         shuju = jiankong.objects.get(手机编号=zhid)
         内容=shuju.内容
-        if len(内容)>100:
+        if len(内容)>200:
             内容=''
         shuju.内容 = sx+'\n'+内容
         shuju.save()
