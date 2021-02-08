@@ -113,16 +113,16 @@ def ww(request):
                 return HttpResponse('账号:%s-%s_删除成功!' % (cxbh, bh_1))
             except:
                 return HttpResponse('账号:%s-%s_删除失败!' % (cxbh, bh_1))
-        elif zxst and cxbh:#加入最大石头限制 cxbh代替最大石头
-            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh))
+        elif zxst and cxbh and bh_6:#加入最大石头限制 cxbh代替最大石头
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh)).filter(账号编号__icontains=bh_6)
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
-        elif zxst and cxbh and bh_6:#加入最大石头限制 cxbh代替最大石头
-            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh)).filter(账号编号__icontains=bh_6)
+        elif zxst and cxbh:#加入最大石头限制 cxbh代替最大石头
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh))
             for shuju in shujus:
                 if shuju.宠物.count(bh_1) >= int(cwysl):
                     jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
