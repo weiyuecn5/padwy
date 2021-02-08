@@ -121,7 +121,14 @@ def ww(request):
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             return render(request, 'blog/bhjg.html', context)
-
+        elif zxst and cxbh and bh_6:#加入最大石头限制 cxbh代替最大石头
+            shujus = shujuku.objects.filter(已卖__exact='否').filter(石头数量__gte=int(zxst)).filter(石头数量__lte=int(cxbh)).filter(账号编号__icontains=bh_6)
+            for shuju in shujus:
+                if shuju.宠物.count(bh_1) >= int(cwysl):
+                    jg.append({"bh": shuju.账号编号, "st": shuju.石头数量,"sx":shuju.买家})
+            context['shujus'] = jg
+            context['shuliang'] = len(jg)
+            return render(request, 'blog/bhjg.html', context)
         elif cxbh and xslx == '1':
             try:
                 shuju = shujuku.objects.get(账号编号=cxbh)
@@ -182,7 +189,6 @@ def ww(request):
             context['shujus'] = jg
             context['shuliang'] = len(jg)
             context['ss'] = bh_1 + 'x' + cwysl + '|' + bh_2 + 'x' + cwesl+ '|最小石头:' + zxst
-            print('000')
             return render(request, 'blog/bhjg.html', context)
         elif bh_1 and bh_2 and  bh_6: #编号1+编号2+组别
             shujus = shujuku.objects.filter(已卖__exact='否').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(账号编号__icontains=bh_6)
