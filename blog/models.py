@@ -13,7 +13,7 @@ class Post(models.Model):
 
 class Hot(models.Model):
     name = models.CharField(max_length=100)
-    number=models.CharField(max_length=50,default=0)
+    number=models.CharField(max_length=200,default=0)
 
 class shujuku(models.Model):
     账号编号=models.CharField(max_length=100,primary_key=True)
